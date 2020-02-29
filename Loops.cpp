@@ -1,22 +1,3 @@
-/*
-  Michael Kurp
-  Full disclosure: I nuked my basic block implemenation and started from scratch.
-  The source level basic blocks were garbage and I didn't have the time to fully implement
-  the methods I needed for my original vision. Thus, I made a Use-After-Free Checker
-  with RecursiveASTVisitor.
-
-  It detects deferences that suceed a free or delete. I added basic branch
-  detection by evaluating the contents of IfStmt->getCond(). I can only predict
-  number literal values or constant number comparisons, but they occur a
-  surprising amount in the test cases for CWE416. If I had a few more days, I
-  would work with scope and implement more advanced branch protection. There is
-  some skeleton code for detecting NULL pointers in the IfStmt->getCond().
-
-  This DOES NOT like globals.
-
-  This casts a wide net and works on many of the test cases in the folder.
-*/
-
 /* Invocation of dread powers vvvvvvvv */
 #include "clang/AST/ASTConsumer.h"
 #include "clang/AST/RecursiveASTVisitor.h"
